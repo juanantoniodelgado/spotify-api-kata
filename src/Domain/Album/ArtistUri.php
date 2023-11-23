@@ -5,7 +5,7 @@ namespace App\Domain\Album;
 use App\Domain\AbstractPlatformUri;
 use InvalidArgumentException;
 
-final class AlbumUri extends AbstractPlatformUri
+class ArtistUri extends AbstractPlatformUri
 {
     /**
      * @throws InvalidArgumentException
@@ -15,7 +15,7 @@ final class AlbumUri extends AbstractPlatformUri
         $separatedUri = explode(':', $externalUri);
 
         if (count($separatedUri) !== 3) {
-            throw new InvalidArgumentException(sprintf('Invalid Album URI "%s"', $externalUri));
+            throw new InvalidArgumentException(sprintf('Invalid Artist URI "%s"', $externalUri));
         }
 
         return new self($separatedUri[0], $separatedUri[1], $separatedUri[2]);

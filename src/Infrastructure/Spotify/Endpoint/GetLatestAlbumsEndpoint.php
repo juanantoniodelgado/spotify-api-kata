@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Spotify\Endpoint;
 
-use App\Infrastructure\Spotify\Item\Album;
+use App\Infrastructure\Spotify\Item\Album\Album;
 use App\Infrastructure\Spotify\SpotifyAPIConnectionException;
 use Psr\Http\Client\ClientExceptionInterface;
 

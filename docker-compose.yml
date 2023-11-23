@@ -31,3 +31,10 @@ services:
             - cvmaker
         ports:
             - 4306:3306
+
+    redis:
+        image: redis:6.2
+        networks:
+            - cvmaker
+        ports:
+            - 60104:6379

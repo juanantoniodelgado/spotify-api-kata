@@ -3,7 +3,9 @@ FROM php:8.2-fpm
 RUN apt-get update && apt-get install -y zlib1g-dev g++ git libzip-dev zip libicu-dev zip \
     && docker-php-ext-install intl opcache pdo pdo_mysql \
     && pecl install apcu \
+    && pecl install redis \
     && docker-php-ext-enable apcu \
+    && docker-php-ext-enable redis \
     && docker-php-ext-configure zip \
     && docker-php-ext-install zip
 

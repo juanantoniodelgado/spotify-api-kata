@@ -6,7 +6,7 @@ use App\Infrastructure\Spotify\Item\Album\Album;
 use App\Infrastructure\Spotify\SpotifyAPIConnectionException;
 use Psr\Http\Client\ClientExceptionInterface;
 
-final class GetLatestAlbumsEndpoint extends AbstractSpotifyEndpoint
+class GetLatestAlbumsEndpoint extends AbstractSpotifyEndpoint
 {
     /**
      * @return list<Album>

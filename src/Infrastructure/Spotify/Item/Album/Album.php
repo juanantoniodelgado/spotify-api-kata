@@ -15,13 +15,13 @@ final readonly class Album
         public string $uri,
         public int $totalTracks,
         public DateTimeImmutable $releaseDate,
-        public ?array $artists,
+        public array $artists,
     ) {
     }
 
     public static function fromSpotifyAPIResponse(array $albumData) : self
     {
-        $artists = null;
+        $artists = [];
 
         if (isset($albumData['artists']) === true && count($albumData['artists']) > 0) {
             foreach ($albumData['artists'] as $artist) {

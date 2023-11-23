@@ -34,6 +34,7 @@ class DoctrineAlbumRepository extends ServiceEntityRepository implements AlbumRe
                 AlbumUri::fromUri($doctrineAlbum->getUri()),
                 $doctrineAlbum->getTotalTracks(),
                 $doctrineAlbum->getReleaseDate(),
+                [],
             );
         } catch (NonUniqueResultException|NoResultException) {
             throw new AlbumNotFoundException();
@@ -48,6 +49,7 @@ class DoctrineAlbumRepository extends ServiceEntityRepository implements AlbumRe
             $album->albumUri->toUri(),
             $album->totalTracks,
             $album->releaseDate,
+            $album->artists,
         ));
 
         $this->getEntityManager()->flush();

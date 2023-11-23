@@ -4,10 +4,14 @@ namespace App\Infrastructure\Persistence\Entity;
 
 use App\Infrastructure\Persistence\Repository\DoctrineAlbumRepository;
 use DateTimeImmutable;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\JoinTable;
+use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\ORM\Mapping\Table;
 
 #[Table(name: 'album')]
@@ -34,12 +38,17 @@ class DoctrineAlbum
     #[Column(name: 'release_date', type: 'datetime_immutable')]
     private DateTimeImmutable $releaseDate;
 
+    #[ManyToMany(targetEntity: DoctrineArtist::class, inversedBy: 'albums')]
+    #[JoinTable(name: 'album_artist')]
+    private Collection $artists;
+
     public function __construct(
         string $externalId,
         string $name,
         string $uri,
         int $totalTracks,
-        DateTimeImmutable $releaseDate
+        DateTimeImmutable $releaseDate,
+        array $artists,
     ) {
         $this->id = 0;
         $this->externalId = $externalId;
@@ -47,6 +56,7 @@ class DoctrineAlbum
         $this->uri = $uri;
         $this->totalTracks = $totalTracks;
         $this->releaseDate = $releaseDate;
+        $this->artists = new ArrayCollection($artists);
     }
 
     public function getId(): int
@@ -102,5 +112,15 @@ class DoctrineAlbum
     public function setReleaseDate(DateTimeImmutable $releaseDate): void
     {
         $this->releaseDate = $releaseDate;
+    }
+
+    public function getArtists(): Collection
+    {
+        return $this->artists;
+    }
+
+    public function setArtists(Collection $artists): void
+    {
+        $this->artists = $artists;
     }
 }
